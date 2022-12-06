@@ -1,5 +1,6 @@
 import React from 'react';
 import { Movie } from '../movie/movie';
+import styles from './movies.module.scss';
 
 type IMovie = {
   Title: string;
@@ -15,7 +16,7 @@ interface IMoviesProps {
 
 export function Movies({ movies }: IMoviesProps): JSX.Element {
   return (
-    <div className="movies">
+    <div className={styles.movies}>
       {movies.map((movie) => (
         <Movie
           key={movie.imdbID}
