@@ -1,10 +1,27 @@
 import React from 'react';
 import { Movie } from '../movie/movie';
 
-export function Movies(): JSX.Element {
+type IMovie = {
+  Title: string;
+  Year: string;
+  imdbID: string;
+  Type: string;
+  Poster: string;
+}
+
+interface IMoviesProps {
+  movies: IMovie[];
+}
+
+export function Movies({ movies }: IMoviesProps): JSX.Element {
   return (
     <div className="movies">
-      <Movie />
+      {movies.map((movie) => (
+        <Movie
+          key={movie.imdbID}
+          movie={movie}
+        />
+      ))}
     </div>
   );
 }
