@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Movies } from '../../components/movies/movies';
 import { Preloader } from '../../components/preloader/preloader';
+import { Search } from '../../components/search/search';
 import { IMovie } from '../../types/types';
 
 export function Main(): JSX.Element {
@@ -14,6 +15,7 @@ export function Main(): JSX.Element {
 
   return (
     <main className="container main">
+      <Search />
       {movies.length
         ? <Movies movies={movies} />
         : <Preloader />}
