@@ -1,30 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Movies } from '../../components/movies/movies';
-
-type IMovie = {
-  Title: string;
-  Year: string;
-  imdbID: string;
-  Type: string;
-  Poster: string;
-}
-
-type IMovies = IMovie[]
-
-// interface IMovie {
-//   Title: string;
-//   Year: string;
-//   imdbID: string;
-//   Type: string;
-//   Poster: string;
-// }
-
-// interface IMovies {
-//   movies: IMovie[] || null;
-// }
+import { IMovie } from '../../types/types';
 
 export function Main(): JSX.Element {
-  const [movies, setMovies] = useState<IMovies>([]);
+  const [movies, setMovies] = useState<IMovie[]>([]);
 
   useEffect(() => {
     fetch('http://www.omdbapi.com/?apikey=d379abfa&s=matrix')

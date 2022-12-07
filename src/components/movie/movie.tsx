@@ -1,12 +1,5 @@
 import React from 'react';
-
-type IMovie = {
-  Title: string;
-  Year: string;
-  imdbID: string;
-  Type: string;
-  Poster: string;
-}
+import { IMovie } from '../../types/types';
 
 interface IMovieProps {
   movie: IMovie;
