@@ -13,7 +13,7 @@ export function Search({ SearchCallBack }: ISearchProps): JSX.Element {
 
   const handleKye = (e: KeyboardEvent<HTMLInputElement>): void => {
     if (e.key === 'Enter') {
-      SearchCallBack(formState.search);
+      SearchCallBack(formState);
     }
   };
 
@@ -41,7 +41,7 @@ export function Search({ SearchCallBack }: ISearchProps): JSX.Element {
       <button
         className={cn(styles.searchButton, 'btn')}
         type="button"
-        onClick={() => SearchCallBack(formState.search)}
+        onClick={() => SearchCallBack(formState)}
       >
         Search
       </button>

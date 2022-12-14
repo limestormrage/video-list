@@ -5,3 +5,8 @@ export interface IMovie {
   Type: string;
   Poster: string;
 }
+
+export interface ISearchFilm {
+  search: string;
+  type: string;
+}

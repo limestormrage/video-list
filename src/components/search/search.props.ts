@@ -1,3 +1,5 @@
+import { ISearchFilm } from '../../types/types';
+
 export interface ISearchProps {
-  SearchCallBack: (str: string) => void;
+  SearchCallBack: ({ search, type }: ISearchFilm) => void;
 }
