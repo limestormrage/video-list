@@ -6,12 +6,14 @@ import { IMoviesProps } from './movies.props';
 export function Movies({ movies }: IMoviesProps): JSX.Element {
   return (
     <div className={styles.movies}>
-      {movies.map((movie) => (
-        <Movie
-          key={movie.imdbID}
-          movie={movie}
-        />
-      ))}
+      {movies.length
+        ? movies.map((movie) => (
+          <Movie
+            key={movie.imdbID}
+            movie={movie}
+          />
+        ))
+        : <h4>Nothing found</h4>}
     </div>
   );
 }
