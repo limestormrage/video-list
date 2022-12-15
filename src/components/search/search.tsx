@@ -1,4 +1,6 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
+import React, {
+  ChangeEvent, KeyboardEvent, useState,
+} from 'react';
 import cn from 'classnames';
 import { ISearchProps } from './search.props';
 import styles from './search.module.scss';
@@ -22,7 +24,6 @@ export function Search({ SearchCallBack }: ISearchProps): JSX.Element {
       ...prevState,
       type: target.value,
     }));
-    SearchCallBack(formState);
   };
 
   return (

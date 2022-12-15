@@ -4,13 +4,15 @@ import { Preloader } from '../../components/preloader/preloader';
 import { Search } from '../../components/search/search';
 import { IMovie, ISearchFilm } from '../../types/types';
 
+const DEFAULT_FILM = 'matrix';
+
 export function Main(): JSX.Element {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [isLoadingMovies, setIsLoadingMovies] = useState(true);
 
   const getSearchFilm = ({ search, type }: ISearchFilm): void => {
     setIsLoadingMovies(true);
-    fetch(`http://www.omdbapi.com/?apikey=d379abfa&s=${search}${type !== 'all' ? `&type=${type}` : ''}`)
+    fetch(`http://www.omdbapi.com/?apikey=d379abfa&s=${search || DEFAULT_FILM}${type !== 'all' ? `&type=${type}` : ''}`)
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.Search ? data.Search : []);
@@ -19,7 +21,7 @@ export function Main(): JSX.Element {
   };
 
   useEffect(() => {
-    fetch('http://www.omdbapi.com/?apikey=d379abfa&s=matrix')
+    fetch(`http://www.omdbapi.com/?apikey=d379abfa&s=${DEFAULT_FILM}`)
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.Search);
