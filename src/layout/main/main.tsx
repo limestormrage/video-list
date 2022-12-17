@@ -13,20 +13,28 @@ export function Main(): JSX.Element {
 
   const getSearchFilm = ({ search, type }: ISearchFilm): void => {
     setIsLoadingMovies(true);
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${search || DEFAULT_FILM}${type !== 'all' ? `&type=${type}` : ''}`)
+    fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${search || DEFAULT_FILM}${type !== 'all' ? `&type=${type}` : ''}`)
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.Search ? data.Search : []);
         setIsLoadingMovies(false);
+      })
+      .catch((err) => {
+        setIsLoadingMovies(false);
+        throw (err);
       });
   };
 
   useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${DEFAULT_FILM}`)
+    fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${DEFAULT_FILM}`)
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.Search);
         setIsLoadingMovies(false);
+      })
+      .catch((err) => {
+        setIsLoadingMovies(false);
+        throw (err);
       });
   }, []);
 
