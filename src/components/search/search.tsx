@@ -4,6 +4,7 @@ import React, {
 import cn from 'classnames';
 import { ISearchProps } from './search.props';
 import styles from './search.module.scss';
+import { filterType } from '../../const';
 
 const initialState = {
   search: '',
@@ -24,6 +25,7 @@ export function Search({ SearchCallBack }: ISearchProps): JSX.Element {
       ...prevState,
       type: target.value,
     }));
+    SearchCallBack(formState);
   };
 
   return (
@@ -48,39 +50,19 @@ export function Search({ SearchCallBack }: ISearchProps): JSX.Element {
         Search
       </button>
       <div>
-        <label className={styles.filterLabel}>
-          <input
-            className="with-gap"
-            name="type"
-            type="radio"
-            value="all"
-            onChange={onChangeFilter}
-            checked={formState.type === 'all'}
-          />
-          <span>All</span>
-        </label>
-        <label className={styles.filterLabel}>
-          <input
-            className="with-gap"
-            name="type"
-            type="radio"
-            value="movie"
-            onChange={onChangeFilter}
-            checked={formState.type === 'movie'}
-          />
-          <span>Movies only</span>
-        </label>
-        <label className={styles.filterLabel}>
-          <input
-            className="with-gap"
-            name="type"
-            type="radio"
-            value="series"
-            onChange={onChangeFilter}
-            checked={formState.type === 'series'}
-          />
-          <span>Series only</span>
-        </label>
+        {Object.values(filterType).map(({ label, type }) => (
+          <label className={styles.filterLabel} key={type}>
+            <input
+              className="with-gap"
+              name="type"
+              type="radio"
+              value={type}
+              onChange={onChangeFilter}
+              checked={formState.type === type}
+            />
+            <span>{label}</span>
+          </label>
+        ))}
       </div>
     </div>
   );
