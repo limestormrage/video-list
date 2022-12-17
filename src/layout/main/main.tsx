@@ -5,6 +5,7 @@ import { Search } from '../../components/search/search';
 import { IMovie, ISearchFilm } from '../../types/types';
 
 const DEFAULT_FILM = 'matrix';
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 export function Main(): JSX.Element {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -12,7 +13,7 @@ export function Main(): JSX.Element {
 
   const getSearchFilm = ({ search, type }: ISearchFilm): void => {
     setIsLoadingMovies(true);
-    fetch(`http://www.omdbapi.com/?apikey=d379abfa&s=${search || DEFAULT_FILM}${type !== 'all' ? `&type=${type}` : ''}`)
+    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${search || DEFAULT_FILM}${type !== 'all' ? `&type=${type}` : ''}`)
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.Search ? data.Search : []);
@@ -21,7 +22,7 @@ export function Main(): JSX.Element {
   };
 
   useEffect(() => {
-    fetch(`http://www.omdbapi.com/?apikey=d379abfa&s=${DEFAULT_FILM}`)
+    fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${DEFAULT_FILM}`)
       .then((response) => response.json())
       .then((data) => {
         setMovies(data.Search);
