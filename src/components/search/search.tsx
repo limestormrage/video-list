@@ -25,7 +25,8 @@ export function Search({ SearchCallBack }: ISearchProps): JSX.Element {
       ...prevState,
       type: target.value,
     }));
-    SearchCallBack(formState);
+
+    SearchCallBack({ search: formState.search, type: target.value });
   };
 
   return (
